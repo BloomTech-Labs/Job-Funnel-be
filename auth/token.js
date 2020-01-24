@@ -14,7 +14,4 @@ async function generateToken(user){
     return jwt.sign(payload, secret, options);
 }
 
-module.exports = {
-    secret,
-    generateToken
-}
+module.exports = generateToken;
