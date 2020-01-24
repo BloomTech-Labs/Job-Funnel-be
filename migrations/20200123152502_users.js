@@ -14,7 +14,6 @@ exports.up = function(knex) {
       tbl.varchar("user_type", 255).notNullable()
 
       tbl.integer('company_id', 255)
-      .notNullable()
       .references("id")
       .inTable("companies")
 
