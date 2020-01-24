@@ -45,7 +45,6 @@ router.post('/register', async (req, res) => {
         }else if(err === 4){
             res.status(400).json({message: `User type is required`});
         }
-        
         else{
             console.log(err);
             res.status(500).json({message: 'Server could not add user.', error: err});
@@ -54,20 +53,19 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const {username, password} = req.body;
-    if(username && password){
-        const user = await db('users as u').where({'u.username': username.toLowerCase()})
-            .leftJoin('farms as f', 'u.id', 'f.id')
-            .select('u.*', 'f.name as farmName')
+    const {email, password} = req.body;
+    if(email && password){
+        const user = await db('users as u').where({'u.email': email.toLowerCase()})
+            .select('u.*')
             .first();
         if(user && bcrypt.compareSync(password, user.password)){
             const token = await generateToken(user);
             res.status(200).json({message: `Welcome ${user.name}`, token, user: {...user, password: undefined}});
         }else{
-            res.status(403).json({message: 'Invalid username or password'});
+            res.status(403).json({message: 'Invalid email or password'});
         }
     }else{
-        res.status(400).json({message: 'Please provide a username and password'});
+        res.status(400).json({message: 'Please provide an email and password'});
     }
 });
 
