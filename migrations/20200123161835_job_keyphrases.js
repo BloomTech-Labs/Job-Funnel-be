@@ -9,7 +9,7 @@ exports.up = function(knex) {
         .notNullable()
         .onDelete('CASCADE')
 
-        tbl.varchar("keyword", 255).notNullable()
+        tbl.varchar("keyphrase", 255).notNullable()
     });
 };
 
