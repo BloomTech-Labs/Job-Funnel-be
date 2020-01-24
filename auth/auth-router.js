@@ -6,7 +6,7 @@ const generateToken = require('./token.js');
 
 router.post('/register', async (req, res) => {
     const user = {first_name, last_name, email, password, user_type} = req.body;
-    console.log('registering ', username);
+    console.log('registering ', first_name, last_name);
     for(let val in user){
         if(typeof user[val] === 'string'){
             user[val] = user[val].toLowerCase();
@@ -32,9 +32,9 @@ router.post('/register', async (req, res) => {
         
         const [id] = await userDb.add({...user, password: bcrypt.hashSync(password, 12)});
 
-        const response = await db('users').select('id', 'username').where({id}).first();
+        const response = await db('users').select('id', 'email').where({id}).first();
 
-        res.status(201).json({id :response.id, username: response.username});
+        res.status(201).json({id: response.id, email: response.email});
     }catch(err){
         if(err === 1){
             res.status(400).json({message: `Email and password are required.`});
