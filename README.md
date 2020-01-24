@@ -6,7 +6,9 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### 1️⃣ Backend delpoyed to [heroku](https://quickhire.herokuapp.com/) <br>
+[Table Structure](https://dbdesigner.page.link/DjSqHkGY7STm3rf76)
+
 
 ## 1️⃣ Getting started
 
