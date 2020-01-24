@@ -5,7 +5,7 @@ const userDb = require('../data/users-model.js');
 const generateToken = require('./token.js');
 
 router.post('/register', async (req, res) => {
-    const user = {isFarmer, farmID, email, username, password, name, zipCode } = req.body;
+    const user = {first_name, last_name, email, password, user_type} = req.body;
     console.log('registering ', username);
     for(let val in user){
         if(typeof user[val] === 'string'){
@@ -14,18 +14,8 @@ router.post('/register', async (req, res) => {
     };
    
     try{
-        if(!(username && password && email)){
+        if(!(email && password)){
             throw 1
-        }else if(!(/^[a-z][a-z0-9_]*$/i.test(username))){
-            throw 2
-        }
-
-        const foundUsername = await db('users')
-        .where({username: user.username})
-        .first();
-
-        if(foundUsername){
-            throw 3
         }
 
         const foundEmail = await db('users')
@@ -33,20 +23,11 @@ router.post('/register', async (req, res) => {
         .first();
 
         if(foundEmail){
+            throw 2
+        }if(!first_name || !last_name){
+            throw 3
+        }if(!user_type){
             throw 4
-        }if(!farmID){
-            throw 5
-        }if(!name){
-            throw 6
-        }if(!zipCode){
-            throw 7
-        }if(zipCode.length !== 5){
-            throw 8
-        }if (isNaN(zipCode)){
-            throw 9
-        }
-        if (isFarmer === undefined){
-            throw 10
         }
         
         const [id] = await userDb.add({...user, password: bcrypt.hashSync(password, 12)});
@@ -56,26 +37,16 @@ router.post('/register', async (req, res) => {
         res.status(201).json({id :response.id, username: response.username});
     }catch(err){
         if(err === 1){
-            res.status(400).json({message: `Email, username and password are required.`});
+            res.status(400).json({message: `Email and password are required.`});
         }else if(err === 2){
-            res.status(400).json({message: 'Username must only contain characters A-Z, _, and 0-9. Username must start with a letter.'});
-        }else if(err === 3){
-            res.status(409).json({message: `Username '${user.username}' is already in use.`});
-        }else if(err === 4){
             res.status(409).json({message: `There is already an account associated with that email`});
-        }else if(err === 5){
-            res.status(400).json({message: `Farm ID is required`});
-        }else if(err === 6){
-            res.status(400).json({message: `Name is required`});
-        }else if(err === 7){
-            res.status(400).json({message: `Zip code is required`});
-        }else if(err === 8){
-            res.status(400).json({message: `Zip code must be five digits.`});
-        }else if(err === 9){
-            res.status(400).json({message: `Zip code must be a number.`});
-        }else if(err === 10){
-            res.status(400).json({message: `bool isFarmer is required`});
-        }else{
+        }else if(err === 3){
+            res.status(400).json({message: `First and last names are required`});
+        }else if(err === 4){
+            res.status(400).json({message: `User type is required`});
+        }
+        
+        else{
             console.log(err);
             res.status(500).json({message: 'Server could not add user.', error: err});
         }
