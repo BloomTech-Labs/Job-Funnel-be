@@ -14,11 +14,6 @@ exports.up = function(knex) {
     tbl.varchar("title", 255).notNullable()
 
     tbl.varchar('seniority', 255)
-
-    tbl.integer('location_id', 255)
-    .references("id")
-    .inTable("locations")
-    .onDelete('SET NULL')
   });
 };
 

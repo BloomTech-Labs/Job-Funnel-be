@@ -1,4 +1,6 @@
-// require('dotenv').config();
+if(!process.env.DB_ENV){
+    require('dotenv').config();
+}
 
 const express = require('express');
 const cors = require('cors');

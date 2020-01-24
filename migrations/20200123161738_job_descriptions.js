@@ -9,10 +9,10 @@ exports.up = function(knex) {
         .notNullable()
         .onDelete('CASCADE')
       
-        tbl.varchar("description", 5000).notNullable()
+        tbl.text("description").notNullable()
     });
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('job_companies')
+    return knex.schema.dropTableIfExists('job_descriptions')
 };
