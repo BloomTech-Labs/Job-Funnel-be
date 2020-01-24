@@ -18,6 +18,11 @@ exports.up = function(knex) {
       .inTable("companies")
       .onDelete('SET NULL')
 
+      tbl.integer('location_id', 255)
+      .references("id")
+      .inTable("locations")
+      .onDelete('SET NULL')
+
       tbl.varchar('education', 255)
 
       tbl.varchar('resume', 255)
