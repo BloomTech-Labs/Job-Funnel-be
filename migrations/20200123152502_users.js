@@ -16,6 +16,7 @@ exports.up = function(knex) {
       tbl.integer('company_id', 255)
       .references("id")
       .inTable("companies")
+      .onDelete('SET NULL')
 
       tbl.varchar('education', 255)
 

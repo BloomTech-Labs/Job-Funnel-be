@@ -5,12 +5,14 @@ exports.up = function(knex) {
     .references('id')
     .inTable('users')
     .notNullable()
+    .onDelete('CASCADE')
 
     tbl.integer('skill_id', 255)
     .references('id')
     .inTable('skills')
     .notNullable()
     .unique()
+    .onDelete('CASCADE')
   });
 };
 

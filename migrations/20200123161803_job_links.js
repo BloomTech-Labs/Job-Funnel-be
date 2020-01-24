@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('job_descriptions', tbl => {
+    return knex.schema.createTable('job_links', tbl => {
         tbl.increments()
 
         tbl.integer('job_id', 255)
@@ -8,11 +8,11 @@ exports.up = function(knex) {
         .inTable("job_listings")
         .notNullable()
         .onDelete('CASCADE')
-      
-        tbl.varchar("description", 5000).notNullable()
+
+        tbl.varchar("external_url", 255).notNullable().unique()
     });
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('job_companies')
+    return knex.schema.dropTableIfExists('job_links')
 };
