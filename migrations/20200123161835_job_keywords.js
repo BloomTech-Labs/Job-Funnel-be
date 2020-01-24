@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('job_keywords', tbl => {
+    return knex.schema.createTable('job_keyphrases', tbl => {
         tbl.increments()
 
         tbl.integer('job_id', 255)
@@ -14,5 +14,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('job_keywords')
+    return knex.schema.dropTableIfExists('job_keyphrases')
 };
