@@ -15,7 +15,7 @@ exports.up = function(knex) {
         .notNullable()
         .onDelete('CASCADE')
 
-        tbl.varchar("status", 255).notNullable().unique()
+        tbl.varchar("status", 255).notNullable()
     });
 };
 

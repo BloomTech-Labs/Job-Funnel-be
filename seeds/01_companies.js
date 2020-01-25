@@ -1,8 +1,25 @@
-
-// exports.seed = function(knex) {
-//   return knex('farms').insert([
-//     {name: 'best farm', addressStreet: '123 4th ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//     {name: 'second best farm', addressStreet: '221B Baker ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//     {name: 'worst farm', addressStreet: '432 1st ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//   ], 'id');
-// };
+exports.seed = function(knex) {
+  return knex("companies").insert(
+    [
+      {
+        name: "IBM",
+        description: "a big tech company",
+        size: "large",
+        revenue: "79 billion"
+      },
+      {
+        name: "apple",
+        description: "maker of expensive ",
+        size: "extra large",
+        revenue: "258 billion"
+      },
+      {
+        name: "amazon",
+        description: "seller of stuff",
+        size: "MEGA",
+        revenue: "232 billion"
+      }
+    ],
+    "id"
+  );
+};

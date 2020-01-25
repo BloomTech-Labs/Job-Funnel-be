@@ -1,8 +1,10 @@
-
-// exports.seed = function(knex) {
-//   return knex('farms').insert([
-//     {name: 'best farm', addressStreet: '123 4th ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//     {name: 'second best farm', addressStreet: '221B Baker ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//     {name: 'worst farm', addressStreet: '432 1st ST', addressCity: 'Seattle', addressState: 'WA', zipCode: 12345, },
-//   ], 'id');
-// };
+exports.seed = function(knex) {
+  return knex("job_links").insert(
+    [
+      { job_id: 1, external_url: "me@link.com" },
+      { job_id: 2, external_url: "1me@link.com" },
+      { job_id: 3, external_url: "2me@link.com" }
+    ],
+    "id"
+  );
+};
