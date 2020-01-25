@@ -1,5 +1,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable("user_skills", tbl => {
+    tbl.increments();
     tbl
       .integer("user_id", 255)
       .references("id")
