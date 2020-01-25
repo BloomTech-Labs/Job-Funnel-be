@@ -1,7 +1,7 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("users_skills", tbl => {
+  return knex.schema.createTable("user_skills", tbl => {
     tbl
-      .integer("users_id", 255)
+      .integer("user_id", 255)
       .references("id")
       .inTable("users")
       .notNullable()
@@ -18,5 +18,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists("users_skills");
+  return knex.schema.dropTableIfExists("user_skills");
 };
