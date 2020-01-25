@@ -4,19 +4,19 @@ exports.seed = function(knex) {
       {
         name: "IBM",
         description: "a big tech company",
-        size: "large",
+        size: 500000,
         revenue: 79000000000
       },
       {
         name: "apple",
-        description: "maker of expensive ",
-        size: "extra large",
+        description: "maker of expensive",
+        size: 200000,
         revenue: 258000000000
       },
       {
         name: "amazon",
         description: "seller of stuff",
-        size: "MEGA",
+        size: 600000,
         revenue: 232000000000
       }
     ],
