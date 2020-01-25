@@ -9,7 +9,7 @@ exports.up = function(knex) {
 
     tbl.integer('size', 255)
 
-    tbl.integer('revenue', 255)
+    tbl.biginteger('revenue', 255)
   });
 };
 
