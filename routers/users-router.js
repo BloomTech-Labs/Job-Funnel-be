@@ -114,7 +114,7 @@ router.delete('/user', async (req, res) => {
         if(password){
             const user = await dbMethods.findById(table, req.user.id);
             if(user && bcrypt.compareSync(password, user.password)){
-                await dbMethods.remove(table, req.user.id);
+                await dbMethods.remove(table, {id: req.user.id});
                 res.status(200).json({message: 'User successfully deleted'});
             }else{
                 throw 1
@@ -128,6 +128,7 @@ router.delete('/user', async (req, res) => {
         }else if(err === 2){
             res.status(400).json({message: 'Please provide password.'});
         }
+        console.log('delete users/user 500 error: ', err)
         res.status(500).json({message: 'Error deleting user.'});
     }
 });
