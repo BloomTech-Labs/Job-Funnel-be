@@ -1,4 +1,4 @@
-if(!process.env.DB_ENV){
+if(!process.env.DB_ENV || process.env.DB_ENV === 'testing'){
     require('dotenv').config();
 }
 

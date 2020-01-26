@@ -22,10 +22,15 @@ module.exports = {
   
   testing: {
     client: 'sqlite3',
-    connection: {
-      filename: './test.db3',
-    },
     useNullAsDefault: true,
+    connection: {
+      filename: './data/test.sqlite3',
+    },
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run('PRAGMA foreign_keys = ON', done);
+      },
+    },
     migrations: {
       directory: './migrations'
     },
