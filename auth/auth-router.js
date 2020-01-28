@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const db = require("../data/dbConfig.js");
 const generateToken = require("./token.js");
+const dbMethods = require('../data/db-model');
 
 router.post("/register", async (req, res) => {
   const user = ({ first_name, last_name, email, password, user_type } = req.body);
@@ -28,7 +29,8 @@ router.post("/register", async (req, res) => {
       throw 4;
     }
 
-    const [id] = await userDb.add({ ...user, password: bcrypt.hashSync(password, 12) });
+    const [id] = await dbMethods.add('users', { ...user, password: bcrypt.hashSync(password, 12) });
+
 
     const response = await db("users")
       .select("id", "email")
