@@ -1,4 +1,4 @@
-exports.seed = function(knex) {
+exports.seed = function (knex) {
   return knex("companies").insert(
     [
       {
@@ -9,7 +9,7 @@ exports.seed = function(knex) {
       },
       {
         name: "apple",
-        description: "maker of expensive",
+        description: "maker of expensive stuff",
         size: 200000,
         revenue: 258000000000
       },
