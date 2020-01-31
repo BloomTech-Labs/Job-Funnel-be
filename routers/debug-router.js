@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('../data/dbConfig');
+const knex = require('knex');
 
 // This router is for debugging to quickly pull all data from each table. Disable when finished debugging.
 
@@ -86,8 +87,16 @@ router.get('/user_skills', async (req, res) => {
 // get all job listings
 router.get('/job_listings', async (req, res) => {
     try{
-        const result = await db('job_listings as u')
-            .select('u.*')
+        const result = await db('job_listings as j')
+            .leftJoin('job_companies as jc', 'jc.job_id', 'j.id')
+            .leftJoin('companies as c', 'c.id', 'jc.company_id')
+            .leftJoin('job_descriptions as jd', 'jd.job_id', 'j.id')
+            .leftJoin('job_locations as jl', 'jl.job_id', 'j.id')
+            .leftJoin('locations as l', 'l.id', 'jl.location_id')
+            .leftJoin('job_links as links', 'links.job_id', 'j.id')
+            // .select('j.*', 'c.name as companyName')
+            .select('j.*', 'c.name as companyName', 'jd.description as description', 
+            'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url')
         if(result){
             res.status(200).json(result)
         }else{

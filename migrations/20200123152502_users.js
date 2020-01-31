@@ -25,9 +25,17 @@ exports.up = function(knex) {
 
       tbl.varchar('education', 255)
 
-      tbl.varchar('resume', 255)
+      tbl.varchar('about', 255)
 
       tbl.varchar('profile_img', 255)
+
+      tbl.varchar('portfolio_url', 255)
+
+      tbl.varchar('github_url', 255)
+
+      tbl.varchar('linkedin_url', 255)
+
+      tbl.varchar('resume', 255)
     });
 };
 
