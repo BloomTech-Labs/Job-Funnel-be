@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary').v2;
 const dbMethods = require('../data/db-model');
 const db = require('../data/dbConfig');
 const table = 'users';
@@ -132,5 +133,103 @@ router.delete('/user', async (req, res) => {
         res.status(500).json({ message: 'Error deleting user.' });
     }
 });
+
+
+
+
+
+//upload profile pictures to cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+router.put('/user/picture', (req, res) => {
+    console.log(req.files);
+
+    if (req.files && req.files.image){
+        const file = req.file.image;
+        cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+            try{
+                const user = await dbMethods.findById(table, req.user.id);
+                if (user) {
+                    const image = await db('users')
+                    .where({ id: req.user.id })
+                    .update({ profile_img: result.secure_url });
+    
+                    if(image){
+                        res.status(201).json({profile_img: result.secure_url});
+                    }else{
+                        throw 'Image could not be added'
+                    }
+                } else {
+                    console.log('Get user by token 404 error', user);
+                    res.status(404).json({ message: `User with id ${req.user.id} not found.` });
+                }
+            }catch(err){
+                console.log(err);
+                res.status(500).json({message: 'Error adding profile picture'});
+            }
+        });
+    }
+    else{
+        res.status(400).json({message: 'No file provided'});
+    }
+});
+
+router.delete('/user/picture', async (req, res) => {
+    try{
+        const user = await dbMethods.findById(table, req.user.id);
+        if (user) {
+            const image = await db('users')
+            .where({ id: req.user.id })
+            .update({ profile_img: '' });
+
+            if(image){
+                res.status(200).json({message: `Profile picture for user id ${req.user.id} successfully deleted`});
+            }else{
+                throw 'Image could not be deleted'
+            }
+        } else {
+            console.log('Get user by token 404 error', user);
+            res.status(404).json({ message: `User with id ${req.user.id} not found.` });
+        }
+    }catch(err){
+        console.log(err);
+        res.status(500).json({message: 'Error deleting profile picture.'})
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
