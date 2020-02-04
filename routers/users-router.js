@@ -134,10 +134,6 @@ router.delete('/user', async (req, res) => {
     }
 });
 
-
-
-
-
 //upload profile pictures to cloudinary
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -146,10 +142,9 @@ cloudinary.config({
 });
 
 router.put('/user/picture', (req, res) => {
-    console.log(req.files);
-
+    // console.log('req.files', req.files);
     if (req.files && req.files.image){
-        const file = req.file.image;
+        const file = req.files.image;
         cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
             try{
                 const user = await dbMethods.findById(table, req.user.id);
@@ -200,36 +195,5 @@ router.delete('/user/picture', async (req, res) => {
         res.status(500).json({message: 'Error deleting profile picture.'})
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;
