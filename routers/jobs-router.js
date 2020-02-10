@@ -1,14 +1,12 @@
 const router = require('express').Router();
-const dbMethods = require('../data/db-model');
 const db = require('../data/dbConfig');
-const table = 'job_listings';
 
 
 // get all job listings
 router.get('/:id', async (req, res) => {
     try{
         const result = await db('job_listings as j')
-        .where({ id: req.params.id })
+        .where({ 'j.id': req.params.id })
             .leftJoin('job_companies as jc', 'jc.job_id', 'j.id')
             .leftJoin('companies as c', 'c.id', 'jc.company_id')
             .leftJoin('job_descriptions as jd', 'jd.job_id', 'j.id')
@@ -17,6 +15,7 @@ router.get('/:id', async (req, res) => {
             .leftJoin('job_links as links', 'links.job_id', 'j.id')
             .select('j.*', 'c.name as companyName', 'jd.description as description', 
             'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url')
+            .first()
         if(result){
             res.status(200).json(result)
         }else{
