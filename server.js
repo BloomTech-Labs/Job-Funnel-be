@@ -13,6 +13,7 @@ const userRouter = require('./routers/users-router.js');
 const jobsRouter = require('./routers/jobs-router.js');
 const historyRouter = require('./routers/history-router.js');
 const debugRouter = require('./routers/debug-router.js');
+const savedRouter = require('./routers/saved-router.js');
 
 const server = express();
 
@@ -26,6 +27,7 @@ server.use('/api/users', authenticate, userRouter);
 server.use('/api/jobs', authenticate, jobsRouter);
 server.use('/api/history', authenticate, historyRouter);
 server.use('/api/debug', authenticate, debugRouter);
+server.use('/api/saved', authenticate, savedRouter)
 
 server.get('/', (req, res) => {
     res.status(200).json({message: 'hi'});
