@@ -38,14 +38,10 @@ function add(table, row) {
 
 function saveJob(job) {
     return db('user_jobs')
-        .insert(job, 'job_id')
-        .then(ids => {
-            const [id] = ids;
-            return db("user_jobs")
-                .where("id", "=", id)
-                .first();
-        })     
+        .insert(job, 'id')
 }
+
+
 
 //
 //get saved job
