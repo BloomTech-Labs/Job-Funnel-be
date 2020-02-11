@@ -1,14 +1,12 @@
 const router = require('express').Router();
-const dbMethods = require('../data/db-model');
 const db = require('../data/dbConfig');
-const table = 'job_listings';
 
 
 // get all job listings
 router.get('/:id', async (req, res) => {
     try{
         const result = await db('job_listings as j')
-        .where({ id: req.params.id })
+        .where({ 'j.id': req.params.id })
             .leftJoin('job_companies as jc', 'jc.job_id', 'j.id')
             .leftJoin('companies as c', 'c.id', 'jc.company_id')
             .leftJoin('job_descriptions as jd', 'jd.job_id', 'j.id')
@@ -17,6 +15,7 @@ router.get('/:id', async (req, res) => {
             .leftJoin('job_links as links', 'links.job_id', 'j.id')
             .select('j.*', 'c.name as companyName', 'jd.description as description', 
             'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url')
+            .first()
         if(result){
             res.status(200).json(result)
         }else{
@@ -29,4 +28,37 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Post Job to Saved Jobs
+// router.post('/saved', async (req, res) => {
+//     const { jobID, jobStatus } = req.body;
+//     console.log(req.body);
+// })
+
+
+
+// router.post('/', restricted, (req, res) => {
+//     const input = req.body;
+
+//     if(input.name && input.description && input.user_id && input.date) {
+//         Workouts.add(input)
+//         .then(workout => {
+//             res.status(201).json(workout)
+//         })
+//         .catch(error => {
+//             console.log(error)
+//             res.status(500).json({message: "failed to create a new workout"})
+//         })
+//     } else {
+//         res.status(400).json({message: "please make sure you fill out all of the required fields"})
+//     }
+  
+  
+// })
+
+
+
+  
 module.exports = router;
+
+
+  
