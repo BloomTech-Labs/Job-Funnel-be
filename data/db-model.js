@@ -51,7 +51,7 @@ function saveJob(job) {
 //get saved job
 function findSaved(id) {
     return db('user_jobs as uj')
-        .where({user_id: id})
+        .where({'uj.user_id': id})
         .leftJoin('users as u', 'u.id', 'uj.user_id')
         .leftJoin('job_companies as jc', 'jc.job_id', 'uj.id')
         .leftJoin('companies as c', 'c.id', 'jc.company_id')
