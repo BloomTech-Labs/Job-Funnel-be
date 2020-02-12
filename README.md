@@ -81,7 +81,7 @@ To get the server running locally:
 
 ---
 
-## Link to post man collection to view working API End-Points 
+## Link to postman collection to view working API End-Points 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/573ca210c5481c7f4047)
 
