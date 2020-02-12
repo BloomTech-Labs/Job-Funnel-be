@@ -23,74 +23,53 @@ To get the server running locally:
 
 ### Backend framework goes here
 
-🚫 Why did you choose this framework?
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
 
-## 2️⃣ Endpoints
+-    express
+-    knex
+-    jsonwebtoken
+-    cloudinary
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
 
-#### Organization Routes
+## Endpoints
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
 
-#### User Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+- ### users
+    | Path              | Type   | Deployed | Auth (JWT) | Body               | Description          |
+    | ----------------- |:------:|:--------:|:----------:|:------------------:| -------------------- |
+    | /auth/register    | POST   |     True | None       | User               | Create new user      |
+    | /auth/login       | POST   |     True | None       | email, password    | Log in, get token    |
+    | /users/:id        | GET    |     True | Required   | None               | Get user by param ID |
+    | /users/user       | GET    |     True | Required   | None               | Get user by token    |
+    | /users/user       | PUT    |     True | Required   | User, password     | Update user by token |
+    | /users/user       | DELETE |     True | Required   | password           | Delete user by token |
+    
 
-# Data Model
 
-🚫This is just an example. Replace this with your data model
 
-#### 2️⃣ ORGANIZATIONS
+
+#### users format
 
 ---
 
 ```
 {
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+ first_name: string
+ last_name: string
+ email: string
+ password: string
+ job_id: integer
+ company_id: integer
+ education: string
+ about: string 
 }
 ```
 
-#### USERS
+#### Link to post man collection to view working API End-Points 
 
----
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/573ca210c5481c7f4047)
 
-```
-{
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
-  email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
-}
-```
 
 ## 2️⃣ Actions
 
@@ -169,6 +148,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
 ## Documentation
-
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+[Front-end git hub read me ](https://github.com/Lambda-School-Labs/Job-Funnel-fe/blob/master/README.md)
