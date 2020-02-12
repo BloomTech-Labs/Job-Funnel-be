@@ -9,7 +9,8 @@ module.exports = {
     remove,
     searchBy,
     saveJob,
-    findSaved
+    findSaved,
+    clearSaved
 }
 
 function findBy(table, value) {
@@ -34,7 +35,7 @@ function add(table, row) {
         .insert({ ...row }, 'id');
 }
 
-// save a job added by Mauricio and Anthony
+// save a job 
 
 function saveJob(job) {
     return db('user_jobs')
@@ -42,9 +43,7 @@ function saveJob(job) {
 }
 
 
-
-//
-//get saved job
+//get saved job by user id
 function findSaved(id) {
     return db('user_jobs as uj')
         .where({user_id: id})
@@ -58,7 +57,12 @@ function findSaved(id) {
         .select('u.id', 'uj.job_id', 'uj.status', 'uj.*', 'c.name as companyName', 'jd.description as description', 
         'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url')
   }
-
+//delete job by job_id 
+  function clearSaved(id) {
+    return db('user_jobs')
+        .where('job_id', id)
+        .del()
+  }
 
 
 
