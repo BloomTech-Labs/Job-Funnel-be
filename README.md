@@ -1,8 +1,4 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
@@ -10,16 +6,18 @@
 [Table Structure](https://dbdesigner.page.link/DjSqHkGY7STm3rf76)
 
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
 
 - Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- **npm i** to install all required dependencies
+- **knex migrate:latest** to run migrations.
+- **knex seed:run** to seed database for local api calls 
+- **npm run server** to start the local server
+- **npm run test** to start server using testing environment
+
 
 ### Backend framework goes here
 
@@ -46,12 +44,8 @@ To get the server running locally:
     | /users/user       | DELETE |     True | Required   | password           | Delete user by token |
     
 
-
-
-
-#### users format
-
 ---
+#### users format
 
 ```
 {
@@ -66,50 +60,43 @@ To get the server running locally:
 }
 ```
 
-#### Link to post man collection to view working API End-Points 
+---
+
+- ### Job--Saved--History 
+   
+   | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
+   | ------------------------ |:------:|:--------:|:----------:|:-----:| ------------------------ |
+   | api/job/:id              | GET    |     True | Required   | none  | GET job details by id    |
+   | api/saved/:id            | GET    |     True | Required   | none  | GET job details by id    |
+   | api/saved/               | POST   |     True | Required   | none  | GET job details by id    |
+   | api/history/             | POST   |     True | Required   | none  | POST job to history      |
+   | api/history/             | GET    |     True | Required   | none  | GET all history          |
+   | api/history/all          | DELETE |     True | Required   | none  | DELETE all history       |
+
+    
+
+#### For more docs on the endpoints and testing commands see the Documentation folder.
+
+
+
+---
+
+## Link to post man collection to view working API End-Points 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/573ca210c5481c7f4047)
 
 
-## 2️⃣ Actions
 
-🚫 This is an example, replace this with the actions that pertain to your backend
-
-`getOrgs()` -> Returns all organizations
-
-`getOrg(orgId)` -> Returns a single organization by ID
-
-`addOrg(org)` -> Returns the created org
-
-`updateOrg(orgId)` -> Update an organization by ID
-
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
-<br>
-`getUsers(orgId)` -> if no param all users
-
-`getUser(userId)` -> Returns a single user by user ID
-
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
-
-`updateUser(userId, changes object)` -> Updates a single user by ID.
-
-`deleteUser(userId)` -> deletes everything dependent on the user
-
-## 3️⃣ Environment Variables
+##  Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
 create a .env file that includes the following:
 
-🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
+```
     *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
+    *  JWT_SECRET - you can pick any secret for the .env file
+```
     
 ## Contributing
 
