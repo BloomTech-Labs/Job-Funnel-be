@@ -43,6 +43,22 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.delete('/:id', (req, res) => {
+   const id = req.params.id;
+   jobs.clearSaved(id)
+    .then( id => {
+        if (id) {
+            res.status(200).json({message: "The saved job was successfully deleted."})
+        } else {
+            res.status(404).json({ message: "The job with the specified ID could not be found." })
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).json({ error: "The job could not be removed" })
+    })
+})
+
 
 
 
