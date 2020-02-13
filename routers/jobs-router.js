@@ -27,6 +27,33 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Post Job to Saved Jobs
+// router.post('/saved', async (req, res) => {
+//     const { jobID, jobStatus } = req.body;
+//     console.log(req.body);
+// })
+
+
+
+// router.post('/', restricted, (req, res) => {
+//     const input = req.body;
+
+//     if(input.name && input.description && input.user_id && input.date) {
+//         Workouts.add(input)
+//         .then(workout => {
+//             res.status(201).json(workout)
+//         })
+//         .catch(error => {
+//             console.log(error)
+//             res.status(500).json({message: "failed to create a new workout"})
+//         })
+//     } else {
+//         res.status(400).json({message: "please make sure you fill out all of the required fields"})
+//     }
+  
+  
+// })
+
 
 
 
