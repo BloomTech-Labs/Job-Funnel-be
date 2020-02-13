@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const db = require('../data/dbConfig');
 
-
-// get all job listings
+// get job details by ID //
 router.get('/:id', async (req, res) => {
     try{
         const result = await db('job_listings as j')
@@ -30,7 +29,9 @@ router.get('/:id', async (req, res) => {
 
 
 
+
   
+
 module.exports = router;
 
 
