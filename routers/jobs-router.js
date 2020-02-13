@@ -13,11 +13,7 @@ router.get('/:id', async (req, res) => {
             .leftJoin('job_locations as jl', 'jl.job_id', 'j.id')
             .leftJoin('locations as l', 'l.id', 'jl.location_id')
             .leftJoin('job_links as links', 'links.job_id', 'j.id')
-<<<<<<< HEAD
-            .select('j.*','c.name as companyName', 'jd.description as description', 
-=======
             .select('j.*', 'c.name as companyName', 'jd.description as description', 
->>>>>>> 64ed99c63f7458e2eec6f4336ad2fb9303f1c496
             'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url').limit(100)
             .first()
         if(result){
