@@ -96,7 +96,7 @@ router.get('/job_listings', async (req, res) => {
             .leftJoin('job_links as links', 'links.job_id', 'j.id')
             // .select('j.*', 'c.name as companyName')
             .select('j.*', 'c.name as companyName', 'jd.description as description', 
-            'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url')
+            'l.city as city', 'l.state_province as stateOrProvince', 'l.country as country', 'links.external_url as testexternal_url').limit(100)
         if(result){
             res.status(200).json(result)
         }else{
