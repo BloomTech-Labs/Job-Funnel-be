@@ -54,7 +54,7 @@ router.post('/', async (req, res) => {
         if (!jobID || !jobStatus){
             throw 400;
         }
-        const userJobs = await db('user_history').where({ user_id: req.user.id })
+        const userJobs = await db('user_history as uh').where({ 'uh.user_id': req.user.id })
         .orderBy('view_number', 'asc');
         if (userJobs.length) {
             const updated = await updateViewNumbers(userJobs);
@@ -78,7 +78,7 @@ router.post('/', async (req, res) => {
 // get history
 router.get('/', async (req, res) => {
     try {
-        const userJobs = await db('user_history').where({ user_id: req.user.id })
+        const userJobs = await db('user_history as uh').where({ 'uh.user_id': req.user.id })
         .orderBy('view_number', 'asc');
         if (userJobs.length) {
             res.status(200).json({ userJobs });
