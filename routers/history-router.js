@@ -58,10 +58,10 @@ router.post('/', async (req, res) => {
         .orderBy('view_number', 'asc');
         if (userJobs.length) {
             const updated = await updateViewNumbers(userJobs);
-            const added = await db('user_history').insert({ user_id: req.user.id, job_id: jobID, view_number: 1, status: jobStatus });
+            const added = await db('user_history as uh').insert({ 'uh.user_id': req.user.id, 'uh.job_id': jobID, view_number: 1, status: jobStatus });
             added && updated && res.status(201).json({ message: 'Successfully added job to history' });
         } else {
-            const added = await db('user_history').insert({ user_id: req.user.id, job_id: jobID, view_number: 1, status: jobStatus });
+            const added = await db('user_history as uh').insert({ 'uh.user_id': req.user.id, 'uh.job_id': jobID, view_number: 1, status: jobStatus });
             res.status(201).json({ message: `Successfully added job id ${jobID} to history`, added: added });
         }
     } catch (err) {
