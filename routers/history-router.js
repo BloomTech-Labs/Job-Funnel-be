@@ -67,9 +67,9 @@ router.post('/', async (req, res) => {
     } catch (err) {
         console.log('viewedJobs post error: ', err);
         switch (err) {
-            case 400: res.status(400).json({ message: 'jobID and jobStatus are required' });
+            case 400: res.status(400).json({ message: 'jobID and jobStatus are required', err});
                 break;
-            default: res.status(500).json({ message: "Error getting user's viewed jobs" });
+            default: res.status(500).json({ message: "Error getting user's viewed jobs", err });
                 break;
         }
     }
