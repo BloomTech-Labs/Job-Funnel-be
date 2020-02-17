@@ -84,6 +84,7 @@ router.get('/user_skills', async (req, res) => {
         res.status(500).json({message: 'Error getting all user skills.'});
     }
 });
+
 // get all job listings
 router.get('/job_listings', async (req, res) => {
     try{
