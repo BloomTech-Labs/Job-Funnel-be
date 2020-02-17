@@ -44,8 +44,8 @@ router.get('/:id', async (req, res) => {
 
 // put by token
 router.put('/user', async (req, res) => {
-    const { email, first_name, last_name } = req.body;
-    const newValues = { email, first_name, last_name, };
+    const { email, first_name, last_name, about, education, github_url, portfolio_url, linkedin_url, resume } = req.body;
+    const newValues = { email, first_name, last_name, education, about, github_url, portfolio_url, linkedin_url, resume };
     let { password, newPassword } = req.body;
     console.log('updating user- newValues: ', newValues);
     for (let val in newValues) {
@@ -87,6 +87,8 @@ router.put('/user', async (req, res) => {
         } else {
             throw 3
         }
+
+
     } catch (err) {
         if (err === 1) {
             res.status(400).json({ message: 'Current password is required.' });
@@ -95,12 +97,6 @@ router.put('/user', async (req, res) => {
         } if (err === 3) {
             res.status(403).json({ message: 'Invalid credentials' });
         }
-
-        // if(err === 1){
-        //     res.status(400).json({message: `Email, and password are required.`});
-        // }
-
-
         else {
             console.log(err);
             res.status(500).json({ message: 'Server could not update user.', error: err });
@@ -133,6 +129,11 @@ router.delete('/user', async (req, res) => {
         res.status(500).json({ message: 'Error deleting user.' });
     }
 });
+
+
+
+
+
 
 //upload profile pictures to cloudinary
 cloudinary.config({
