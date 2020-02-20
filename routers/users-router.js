@@ -44,8 +44,8 @@ router.get('/:id', async (req, res) => {
 
 // put by token
 router.put('/user', async (req, res) => {
-    const { email, first_name, last_name, about, education, github_url, portfolio_url, linkedin_url, resume } = req.body;
-    const newValues = { email, first_name, last_name, education, about, github_url, portfolio_url, linkedin_url, resume };
+    const { email, first_name, last_name, about, education, github_url, portfolio_url, linkedin_url, resume, skills } = req.body;
+    const newValues = { email, first_name, last_name, education, about, github_url, portfolio_url, linkedin_url, resume, skills };
     let { password, newPassword } = req.body;
     console.log('updating user- newValues: ', newValues);
     for (let val in newValues) {
@@ -143,7 +143,7 @@ cloudinary.config({
 });
 
 router.put('/user/picture', (req, res) => {
-    // console.log('req.files', req.files);
+    console.log('req.files', files);
     if (req.files && req.files.image){
         const file = req.files.image;
         cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
