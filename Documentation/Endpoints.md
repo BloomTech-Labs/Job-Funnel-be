@@ -11,8 +11,6 @@ https://quickhire.herokuapp.com/api/
     | /users/user       | GET    |     True | Required   | None               | Get user by token    |
     | /users/user       | PUT    |     True | Required   | User, password     | Update user by token |
     | /users/user       | DELETE |     True | Required   | password           | Delete user by token |
-    #### Future:
-    >tbd
 
 - ### debug
     | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
@@ -29,18 +27,23 @@ https://quickhire.herokuapp.com/api/
     | /debug/job_keyphrases    | GET    |    True | Required    | None  | Get all job keyphrases   |
     | /debug/user_jobs         | GET    |    True | Required    | None  | Get all user jobs        |
     | /debug/job_locations     | GET    |    True | Required    | None  | Get all job locations    |
-    #### Future:
-    >Remove or relocate from this router when no longer needed.
 
-
+ - ### saved--user--jobs
+   
    | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
    | ------------------------ |:------:|:--------:|:----------:|:-----:| ------------------------ |
-   | api/job/:id              | GET    |     True | Required   | none  | GET job details by id    |
-   | api/saved/:id            | GET    |     True | Required   | none  | GET job details by id    |
-   | api/saved/               | POST   |     True | Required   | none  | GET job details by id    |
-   | api/history/             | POST   |     True | Required   | none  | POST job to history      |
-   | api/history/             | GET    |     True | Required   | none  | GET all history          |
-   | api/history/all          | DELETE |     True | Required   | none  | DELETE all history       |
+   | saved/              | POST    |     True | Required   | none  | POST a saved job to user_jobs  |
+   | saved/:id            | GET    |     True | Required   | none  | GET saved user_job by user ID    |
+   | saved/:id               | DELETE   |     True | Required   | none  | DELETE saved job from user_job by Job ID    |
+
+ - ### Job_Listings
+
+   
+   | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
+   | ------------------------ |:------:|:--------:|:----------:|:-----:| ------------------------ |
+   | jobs/:id             | GET    |     True | Required   | none  | GET Job Details by Job ID  |
 
 
     
+
+### END

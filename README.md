@@ -19,14 +19,14 @@ To get the server running locally:
 - **npm run test** to start server using testing environment
 
 
-### Backend framework goes here
+### Backend framework 
 
 
 
--    express
--    knex
--    jsonwebtoken
--    cloudinary
+-    Express
+-    Knex
+-    Jsonwebtoken
+-    Cloudinary
 
 
 ## Endpoints
@@ -62,18 +62,7 @@ To get the server running locally:
 
 ---
 
-- ### Job--Saved--History 
-   
-   | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
-   | ------------------------ |:------:|:--------:|:----------:|:-----:| ------------------------ |
-   | api/job/:id              | GET    |     True | Required   | none  | GET job details by id    |
-   | api/saved/:id            | GET    |     True | Required   | none  | GET job details by id    |
-   | api/saved/               | POST   |     True | Required   | none  | GET job details by id    |
-   | api/history/             | POST   |     True | Required   | none  | POST job to history      |
-   | api/history/             | GET    |     True | Required   | none  | GET all history          |
-   | api/history/all          | DELETE |     True | Required   | none  | DELETE all history       |
 
-    
 
 #### For more docs on the endpoints and testing commands see the Documentation folder.
 
