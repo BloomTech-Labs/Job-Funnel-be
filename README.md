@@ -1,8 +1,7 @@
 
-
 # API Documentation
 
-#### 1️⃣ Backend delpoyed to [heroku](https://quickhire.herokuapp.com/) <br>
+#### Backend deployed to [Heroku](https://quickhire.herokuapp.com/) <br>
 [Table Structure](https://dbdesigner.page.link/DjSqHkGY7STm3rf76)
 
 
@@ -21,16 +20,24 @@ To get the server running locally:
 
 ### Backend framework 
 
+#### Node/Express
 
+-  In Lambda, we learned how to use node/express to build out our database models. It allowed us to effectively and efficiently create all of the endpoints that we needed, while keeping things simple for the next group of developers that are in charge of adding onto Quickhire down the road. 
 
--    Express
--    Knex
--    Jsonwebtoken
--    Cloudinary
+#### Knex
+- We used Knex to be able to efficiently build out our queries. 
+   
+####  JsonWebToken
+- JavaScript testing library, that allowed us to simply and effectively test our code on the both the front and back-end. 
+
+####  Cloudinary
+- Cloudinary allowed us to easily implement, edit, and delete user profile pictures. 
+
+#### PostgreSQL/Sqlite3
+- Not a framework, but we used PostgreSQL for our production DB, and used sqlite3 for both development, and staging.
 
 
 ## Endpoints
-
 
 
 - ### users
@@ -62,18 +69,13 @@ To get the server running locally:
 
 ---
 
-
-
-#### For more docs on the endpoints and testing commands see the Documentation folder.
-
-
+#### For more docs on the endpoints and testing commands see the [Documentation](https://github.com/Lambda-School-Labs/Job-Funnel-be/tree/master/Documentation) folder.
 
 ---
 
 ## Link to postman collection to view working API End-Points 
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/573ca210c5481c7f4047)
-
 
 
 ##  Environment Variables
@@ -85,6 +87,9 @@ create a .env file that includes the following:
 ```
     *  NODE_ENV - set to "development" until ready for "production"
     *  JWT_SECRET - you can pick any secret for the .env file
+    *  CLOUDINARY_API_KEY - Required to be able to use cloudinary as we did 
+    *  CLOUDINARY_API_SECRET - Required to be able to use cloudinary as we did 
+    *  DATABASE_URL - Connect your created DB
 ```
     
 ## Contributing
@@ -124,4 +129,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
 ## Documentation
-[Front-end git hub read me ](https://github.com/Lambda-School-Labs/Job-Funnel-fe/blob/master/README.md)
+[Front-end github Read-Me](https://github.com/Lambda-School-Labs/Job-Funnel-fe/blob/master/README.md)

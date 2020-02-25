@@ -28,11 +28,11 @@ https://quickhire.herokuapp.com/api/
     | /debug/user_jobs         | GET    |    True | Required    | None  | Get all user jobs        |
     | /debug/job_locations     | GET    |    True | Required    | None  | Get all job locations    |
 
- - ### saved--user--jobs
+ - ### user_jobs
    
    | Path                     | Type   | Deployed | Auth (JWT) | Body  | Description              |
    | ------------------------ |:------:|:--------:|:----------:|:-----:| ------------------------ |
-   | saved/              | POST    |     True | Required   | none  | POST a saved job to user_jobs  |
+   | saved/              | POST    |     True | Required   | user ID, job ID, status  | POST a saved job to user_jobs  |
    | saved/:id            | GET    |     True | Required   | none  | GET saved user_job by user ID    |
    | saved/:id               | DELETE   |     True | Required   | none  | DELETE saved job from user_job by Job ID    |
 
@@ -46,4 +46,3 @@ https://quickhire.herokuapp.com/api/
 
     
 
-### END
